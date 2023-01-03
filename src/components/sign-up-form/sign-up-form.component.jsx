@@ -8,7 +8,7 @@ import FormInput from '../form-input/form-input.component';
 
 import Button from '../button/button.component';
 
-import './sign-up-form.styles.scss';
+import { SignUpContainer } from './sign-up-form.styles';
 
 const defaultFormFields = {
   displayName: '',
@@ -43,8 +43,8 @@ const SignUp = () => {
         password
       );
       const newUser = await createUserDocumentFromAuth(user, { displayName });
-      //setCurrentUser(user);
       console.log(newUser);
+      //setCurrentUser(user);
       resetFormFields();
     } catch (error) {
       if (error.code === 'auth/email-already-in-use') {
@@ -55,7 +55,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="sign-up-container">
+    <SignUpContainer>
       <h2>Don't have an account?</h2>
       <span>hSign up with your email and password</span>
       <form onSubmit={handleSubmit}>
@@ -73,7 +73,7 @@ const SignUp = () => {
           type="text"
           required
           onChange={handleChange}
-          name="displayName"
+          name="email"
         />
         <FormInput
           label="Password"
@@ -81,7 +81,7 @@ const SignUp = () => {
           type="text"
           required
           onChange={handleChange}
-          name="displayName"
+          name="password"
         />
         <FormInput
           label="Confirm Password"
@@ -89,11 +89,11 @@ const SignUp = () => {
           type="text"
           required
           onChange={handleChange}
-          name="displayName"
+          name="confirmPassword"
         />
         <Button type="submit">Submit</Button>
       </form>
-    </div>
+    </SignUpContainer>
   );
 };
 
